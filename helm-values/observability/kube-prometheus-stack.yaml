@@ -3,6 +3,13 @@
 # Recursos iniciais conservadores para nodes t3.small.
 # Dados de métricas e dashboards não terão persistência em PVC.
 
+# Instala/atualiza as CRDs antes do Operator
+crds:
+  enabled: true
+  upgradeJob:
+    enabled: true
+    forceConflicts: true
+
 prometheus:
   prometheusSpec:
     retention: 7d
