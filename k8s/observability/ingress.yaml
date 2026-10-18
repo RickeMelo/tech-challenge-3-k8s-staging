@@ -27,3 +27,4 @@ spec:
                 name: kube-prometheus-stack-prometheus
                 port:
                   number: 9090
+

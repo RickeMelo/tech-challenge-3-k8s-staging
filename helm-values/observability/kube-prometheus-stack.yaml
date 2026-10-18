@@ -14,7 +14,6 @@ prometheus:
   prometheusSpec:
     retention: 7d
     enableRemoteWriteReceiver: true
-    externalUrl: "http://a1d5a75c286484477a963914c6087ca3-2077143552.us-east-1.elb.amazonaws.com/prometheus"
     routePrefix: /
     serviceMonitorSelectorNilUsesHelmValues: false
     resources:
@@ -61,7 +60,8 @@ grafana:
     enabled: false
   grafana.ini:
     server:
-      root_url: "%(protocol)s://%(domain)s/grafana/"
+      domain: ""
+      root_url: "%(protocol)s://%(http_addr)s/grafana/"
       serve_from_sub_path: true
   resources:
     requests:
