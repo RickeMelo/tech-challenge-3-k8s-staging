@@ -91,7 +91,7 @@ config:
       headers:
         api-key: ${env:NEW_RELIC_LICENSE_KEY}
     prometheusremotewrite:
-      endpoint: http://prometheus-kube-prometheus-stack-prometheus.observability.svc:9090/api/v1/write
+      endpoint: http://kube-prometheus-stack-prometheus.observability.svc:9090/api/v1/write
 
   extensions:
     health_check:
