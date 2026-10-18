@@ -10,7 +10,7 @@ image:
   tag: 0.159.0
 
 command:
-  name: otelcol
+  name: /otelcol-contrib
 
 clusterRole:
   create: true
