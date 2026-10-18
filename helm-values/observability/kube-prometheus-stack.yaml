@@ -13,6 +13,7 @@ crds:
 prometheus:
   prometheusSpec:
     retention: 7d
+    enableRemoteWriteReceiver: true
     serviceMonitorSelectorNilUsesHelmValues: false
     resources:
       requests:
@@ -41,6 +42,9 @@ kube-state-metrics:
       memory: 128Mi
 
 prometheus-node-exporter:
+  prometheus:
+    monitor:
+      enabled: false
   resources:
     requests:
       cpu: 25m
