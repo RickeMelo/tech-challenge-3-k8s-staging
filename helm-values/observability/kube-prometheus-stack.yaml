@@ -54,15 +54,21 @@ prometheus-node-exporter:
       cpu: 100m
       memory: 64Mi
 
+
 grafana:
   enabled: true
   persistence:
     enabled: false
+  envValueFrom:
+    GF_SERVER_ROOT_URL:
+      configMapKeyRef:
+        name: grafana-public-url
+        key: root_url
   grafana.ini:
     server:
       domain: ""
-      root_url: "%(protocol)s://%(http_addr)s/grafana/"
-      serve_from_sub_path: true
+      enforce_domain: false
+      serve_from_sub_path: false
   resources:
     requests:
       cpu: 50m
@@ -70,6 +76,7 @@ grafana:
     limits:
       cpu: 200m
       memory: 256Mi
+
 
 alertmanager:
   enabled: true
