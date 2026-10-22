@@ -69,6 +69,13 @@ grafana:
       domain: ""
       enforce_domain: false
       serve_from_sub_path: false
+  # NOVO: Loki como datasource (uid fixo, usado pelo dashboard)
+  additionalDataSources:
+    - name: Loki
+      type: loki
+      uid: loki
+      access: proxy
+      url: http://loki-gateway.observability.svc.cluster.local
   resources:
     requests:
       cpu: 50m

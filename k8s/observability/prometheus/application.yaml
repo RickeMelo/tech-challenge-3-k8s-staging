@@ -14,7 +14,7 @@ spec:
       helm:
         valueFiles:
           - $values/helm-values/observability/kube-prometheus-stack.yaml
-    - repoURL: https://github.com/castilhoarth/tech-challenge-3-k8s.git
+    - repoURL: https://github.com/RickeMelo/tech-challenge-3-k8s-staging.git
       targetRevision: feature/fase-4-observabilidade
       ref: values
   destination:

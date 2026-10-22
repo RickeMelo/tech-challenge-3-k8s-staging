@@ -90,8 +90,20 @@ config:
       endpoint: https://otlp.nr-data.net
       headers:
         api-key: ${env:NEW_RELIC_LICENSE_KEY}
+    # NOVO: logs vão para o endpoint OTLP nativo do Loki
+    otlp_http/loki:
+      endpoint: http://loki-gateway.observability.svc.cluster.local/otlp
     prometheusremotewrite:
       endpoint: http://kube-prometheus-stack-prometheus.observability.svc:9090/api/v1/write
+      # NOVO: transforma service.name, k8s.namespace.name etc. em labels das métricas
+      resource_to_telemetry_conversion:
+        enabled: true
+
+  # NOVO: transforma traces em métricas (traces_span_metrics_calls_total, ...)
+  # usadas no dashboard (taxa de requisições/erros) e nos alertas.
+  connectors:
+    spanmetrics:
+      metrics_flush_interval: 15s
 
   extensions:
     health_check:
@@ -110,10 +122,12 @@ config:
         exporters:
           - debug
           - otlp_http/newrelic
+          - spanmetrics
       metrics:
         receivers:
           - otlp
           - prometheus
+          - spanmetrics
         processors:
           - memory_limiter
           - batch
@@ -128,3 +142,4 @@ config:
           - batch
         exporters:
           - debug
+          - otlp_http/loki

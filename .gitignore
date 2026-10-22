@@ -24,3 +24,4 @@ terraform/*.tfstate
 terraform/*.tfstate.*
 terraform/*.tfvars
 terraform/*.tfvars.json
+.DS_Store
